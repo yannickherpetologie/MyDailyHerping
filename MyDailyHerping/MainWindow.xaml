@@ -1,0 +1,90 @@
+﻿<Window x:Class="MyDailyHerping.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        xmlns:properties="clr-namespace:MyDailyHerping.Properties"
+        xmlns:local="clr-namespace:MyDailyHerping"
+        mc:Ignorable="d"
+        Title="My Daily Herping" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid x:Name="LayoutGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0">
+            <MenuItem Header="Fichier">
+                <MenuItem Header="Quitter" />
+            </MenuItem>
+            <MenuItem Header="Outils">
+                <MenuItem Header="Configuration" />
+            </MenuItem>
+            <MenuItem Header="Aide">
+                <MenuItem Header="À propos" />
+            </MenuItem>
+        </Menu>
+        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
+            <ToolBar x:Name="tlbObsSite" DockPanel.Dock="Top">
+                <Button x:Name="btnAddArea" Content="Nouveau site" Click="btnAddArea_Click"></Button>
+            </ToolBar>
+            <ListView x:Name="listObsSite" ItemsSource="{Binding}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding ObjectID}" FontWeight="Bold" />
+                            <TextBlock Text=" - " />
+                            <TextBlock Text="{Binding Name}" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Grid.Column="1">
+            <ToolBar DockPanel.Dock="Top">
+                <ComboBox x:Name="cmBoxMapStyle" SelectedIndex="0" Width="150" SelectionChanged="ChangeMapMode">
+                    <ComboBoxItem x:Name="RealMode" Content="Réel" />
+                    <ComboBoxItem x:Name="AerialMode" Content="Antesse" />
+                    <ComboBoxItem x:Name="AerialWithLabels" Content="Antenne avec étiquettes" />
+                </ComboBox>
+            </ToolBar>
+            <m:Map CredentialsProvider="Df22AGot5NDFZ5rQe64w~qED6-ybQquNbQt4nsJSJ_Q~Aszy9wflyAUCTNYlYxkcFxraQ3cw1069rspywOGxoVRI-myC8APPrzywkWet5vew" 
+               ZoomLevel="10"
+               Center="46.708870163, 7.059398683"
+               x:Name="myMap" />
+        </DockPanel>
+        <DockPanel Grid.Row="2" Grid.Column="1">
+            <ToolBar DockPanel.Dock="Top">
+                <Button x:Name="BtnAddObservation">Ajouter une observation</Button>
+                <Button x:Name="BtnExportCSV">Exporter CSV</Button>
+            </ToolBar>
+            <DataGrid AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Date}" Header="Date" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding Species}" 
+                            Header="Espèce" Width="SizeToHeader"
+                            IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding CommonName}" Header="Nom Commun" 
+                            Width="SizeToHeader" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding QtAdulte}" Header="Qt adulte" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding QtMale}" Header="Qt Male" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding QtFemale}" Header="Qt Femelle" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding QtJuvenile}" Header="Qt Juvenile" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding QtLarva}" Header="Qt larve" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding QtEggs}" Header="Qt oeufs" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding QtReproduction}" Header="Qt Reproduction" Width="SizeToHeader"/>
+                    <DataGridTextColumn Binding="{Binding QtShed}" Header="Qt Mue" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <StatusBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="statusBar">
+            <TextBlock x:Name="txtInfo" Text="My Daily Herping" />
+        </StatusBar>
+    </Grid>
+</Window>

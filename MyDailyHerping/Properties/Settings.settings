@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MyDailyHerping.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Bing_KEY_MAP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Df22AGot5NDFZ5rQe64w~qED6-ybQquNbQt4nsJSJ_Q~Aszy9wflyAUCTNYlYxkcFxraQ3cw1069rspywOGxoVRI-myC8APPrzywkWet5vew</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
